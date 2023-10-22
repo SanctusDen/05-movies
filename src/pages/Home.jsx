@@ -30,7 +30,8 @@ const Home = () => {
     <Section>
       <Container>
         <h1>Popular movies of the day!</h1>
-        {loading ? <HomeList movies={movies} /> : <Loader />}
+        {loading && <Loader />}
+        {<HomeList movies={movies} />}
       </Container>
     </Section>
   );
