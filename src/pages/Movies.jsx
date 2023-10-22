@@ -12,10 +12,10 @@ const Movies = () => {
   const [setLoading] = useState(false);
   const [searchParams, setSearchParams] = useSearchParams();
 
-  const queryMovies = searchParams.get('query');
+  const query = searchParams.get('query');
 
   useEffect(() => {
-    if (!queryMovies) return;
+    if (!query) return;
     const details = async () => {
       try {
         const { result } = await fetchSerchMovies();
@@ -26,13 +26,13 @@ const Movies = () => {
       }
     };
     details();
-  }, [queryMovies]);
+  }, [query]);
 
   useEffect(() => {
     const details = async () => {
       setLoading(true);
       try {
-        const { results } = await fetchSerchMovies(queryMovies);
+        const { results } = await fetchSerchMovies(query);
         setMovies([results]);
       } catch (error) {
         console.log(error.message);
@@ -41,7 +41,7 @@ const Movies = () => {
       }
     };
     details();
-  }, [queryMovies]);
+  }, [query]);
 
   const handleSubmit = e => {
     e.preventDefault();
@@ -62,7 +62,7 @@ const Movies = () => {
               <input type="text" placeholder="Search Movies" required />
             </label>
           </form>
-          {movies.length !== 0 && <h2>Movies: '{queryMovies}'</h2>}
+          {movies.length !== 0 && <h2>Movies: '{query}'</h2>}
         </MoviesWrapper>
 
         <ul></ul>
