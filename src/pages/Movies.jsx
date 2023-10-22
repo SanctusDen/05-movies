@@ -9,14 +9,13 @@ import { fetchSerchMovies } from 'services/api';
 
 const Movies = () => {
   const [movies, setMovies] = useState([]);
-  const [loading, setLoading] = useState(false);
+  const [setLoading] = useState(false);
   const [searchParams, setSearchParams] = useSearchParams();
 
   const queryMovies = searchParams.get('query');
 
   useEffect(() => {
     if (!queryMovies) return;
-    console.log('someone');
     const details = async () => {
       try {
         const { result } = await fetchSerchMovies();
@@ -42,7 +41,7 @@ const Movies = () => {
       }
     };
     details();
-  }, []);
+  }, [queryMovies]);
 
   const handleSubmit = e => {
     e.preventDefault();
@@ -63,6 +62,7 @@ const Movies = () => {
               <input type="text" placeholder="Search Movies" required />
             </label>
           </form>
+          {movies.length !== 0 && <h2>Movies: '{queryMovies}'</h2>}
         </MoviesWrapper>
 
         <ul></ul>

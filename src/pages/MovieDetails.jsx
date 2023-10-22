@@ -1,10 +1,11 @@
+import { Loader } from 'components/Loader/Loader';
 import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import { fetchAllDetails } from 'services/api';
 
 const MovieDetails = () => {
   const [loading, setLoading] = useState(false);
-  const [movies, setMovies] = useState({});
+  const [movie, setMovies] = useState({});
   const { movieId } = useParams();
 
   useEffect(() => {
@@ -24,6 +25,7 @@ const MovieDetails = () => {
   return (
     <div>
       <h1>{movieId}</h1>
+      {loading ? <ul movie={movie} /> : <Loader />}
     </div>
   );
 };
