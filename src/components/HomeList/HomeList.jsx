@@ -1,14 +1,14 @@
+import HomeItem from 'components/HomeItem/HomeItem';
 import React from 'react';
-import { useLocation } from 'react-router-dom';
+import { ListHome } from './HomeList.styled';
 
-const HomeList = ({ id, title }) => {
-  const location = useLocation();
+const HomeList = ({ movies }) => {
   return (
-    <li>
-      <link to={`/movies/${id}`} state={{ from: location }}>
-        <h1>{title}</h1>
-      </link>
-    </li>
+    <ListHome>
+      {movies.map(({ title, id, poster_path }) => (
+        <HomeItem key={id} title={title} poster_path={poster_path} id={id} />
+      ))}
+    </ListHome>
   );
 };
 
