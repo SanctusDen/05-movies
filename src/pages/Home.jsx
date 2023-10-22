@@ -13,13 +13,14 @@ const Home = () => {
 
   useEffect(() => {
     const details = async () => {
+      setLoading(true);
       try {
         const { results } = await fetchTrendMovies();
         setMovies(results);
-        setLoading(true);
       } catch (error) {
         console.log(error.message);
-        setLoading(true);
+      } finally {
+        setLoading(false);
       }
     };
     details();
