@@ -30,5 +30,6 @@ export const Header = styled.header`
     font-weight: 600;
     font-size: 20px;
     color: #fff;
+    cursor: pointer;
   }
 `;

@@ -1,4 +1,4 @@
-import HomeList from 'components/HomeItem/HomeItem';
+import HomeList from 'components/HomeList/HomeList';
 import { Loader } from 'components/Loader/Loader';
 import React, { useEffect, useState } from 'react';
 import { fetchTrendMovies } from 'services/api';
@@ -15,7 +15,6 @@ const Home = () => {
         setLoading(true);
       } catch (error) {
         console.log(error.message);
-
         setLoading(true);
       }
     };
@@ -29,4 +28,5 @@ const Home = () => {
     </section>
   );
 };
+
 export default Home;
