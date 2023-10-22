@@ -1,5 +1,9 @@
 import HomeList from 'components/HomeList/HomeList';
 import { Loader } from 'components/Loader/Loader';
+import {
+  Container,
+  Section,
+} from 'components/SharedLayout/SharedLayout.styled';
 import React, { useEffect, useState } from 'react';
 import { fetchTrendMovies } from 'services/api';
 
@@ -22,10 +26,12 @@ const Home = () => {
   }, []);
 
   return (
-    <section>
-      <h1>Popular movies of the day! </h1>
-      {loading ? <HomeList movies={movies} /> : <Loader />}
-    </section>
+    <Section>
+      <Container>
+        <h1>Popular movies of the day! </h1>
+        {loading ? <HomeList movies={movies} /> : <Loader />}
+      </Container>
+    </Section>
   );
 };
 

@@ -5,7 +5,9 @@ import { Header } from './SharedLayout.styled';
 const SharedLayout = () => {
   return (
     <Header>
-      <span>LOGO</span>
+      <NavLink to="/">
+        <span>LOGO</span>
+      </NavLink>
       <nav>
         <NavLink to="/">Home</NavLink>
         <NavLink to="/movies">Movies</NavLink>

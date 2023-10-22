@@ -15,42 +15,26 @@ export const fetchTrendMovies = async () => {
   return data;
 };
 
-export const fetchSerchMovies = async () => {
-  const { data } = await instance.get(`/search/search-movies`);
+export const fetchSerchMovies = async query => {
+  const { data } = await instance.get('/search/movie', {
+    params: {
+      query: query,
+    },
+  });
   return data;
 };
 
-export const fetchAllDetails = async () => {
-  const { data } = await instance.get(`/movies/get-movie-details`);
+export const fetchAllDetails = async id => {
+  const { data } = await instance.get(`/movie/${id}`);
   return data;
 };
 
-export const fetchActor = async () => {
-  const { data } = await instance.get(`/movies/get-movie-credits`);
-  return data;
+export const fetchActor = async id => {
+  const { data } = await instance.get(`/movie/${id}/credits`);
+  return data.cast;
 };
 
-export const fetchReviews = async () => {
-  const { data } = await instance.get(`/movies/get-movie-reviews`);
-  return data;
+export const fetchReviews = async id => {
+  const { data } = await instance.get(`/movie/${id}/reviews`);
+  return data.results;
 };
-
-// export const fetchTrendMovies = async () => {
-//   return await axios.get(`${BASE_URL}/trending/movie/day`);
-// };
-
-// export const fetchSerchMovies = async () => {
-//   await axios.get(`${BASE_URL}/search/search-movies`);
-// };
-
-// export const fetchAllDetails = async id => {
-//   await axios.get(`${BASE_URL}/movie/${id}`);
-// };
-
-// export const fetchActor = async id => {
-//   await axios.get(`${BASE_URL}/movie/${id}/credits`);
-// };
-
-// export const fetchReviews = async id => {
-//   await axios.get(`${BASE_URL}/movie/${id}/reviews`);
-// };
