@@ -29,7 +29,7 @@ const Home = () => {
   return (
     <Section>
       <Container>
-        <h1>Popular movies of the day! </h1>
+        <h1>Popular movies of the day!</h1>
         {loading ? <HomeList movies={movies} /> : <Loader />}
       </Container>
     </Section>
@@ -37,4 +37,3 @@ const Home = () => {
 };
 
 export default Home;
-// map?/

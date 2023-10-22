@@ -52,6 +52,17 @@ export const Container = styled.div`
   padding: 0px 20px;
   margin-left: auto;
   margin-right: auto;
-  max-width: 375px;
+  max-width: 1440px;
   overflow: hidden;
+
+  h1 {
+    color: #fff;
+    font-size: 28px;
+  }
+`;
+
+export const MoviesWrapper = styled.div`
+  display: flex;
+  align-items: center;
+  gap: 30px;
 `;
