@@ -1,3 +1,4 @@
+import { Loader } from 'components/Loader/Loader';
 import {
   Container,
   MoviesWrapper,
@@ -9,7 +10,7 @@ import { fetchSerchMovies } from 'services/api';
 
 const Movies = () => {
   const [movies, setMovies] = useState([]);
-  const [setLoading] = useState(false);
+  const [loading, setLoading] = useState(false);
   const [searchParams, setSearchParams] = useSearchParams();
 
   const query = searchParams.get('query');
@@ -62,7 +63,12 @@ const Movies = () => {
               <input type="text" placeholder="Search Movies" required />
             </label>
           </form>
-          {movies.length !== 0 && <h2>Movies: '{query}'</h2>}
+
+          {loading ? (
+            <Loader />
+          ) : (
+            <>{movies.length !== 0 && <h2>Movies: '{query}'</h2>}</>
+          )}
         </MoviesWrapper>
 
         <ul></ul>
