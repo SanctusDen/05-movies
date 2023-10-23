@@ -29,6 +29,7 @@ export const Header = styled.header`
     &:focus,
     &:active {
       color: #3fc9ff;
+      transition: all 400ms ease-in-out;
     }
   }
 
@@ -42,11 +43,14 @@ export const Header = styled.header`
     &:focus,
     &:active {
       color: #3fc9ff;
+      transition: all 400ms ease-in-out;
     }
   }
 `;
 
-export const Section = styled.section``;
+export const Section = styled.section`
+  padding-top: 20px;
+`;
 
 export const Container = styled.div`
   padding: 0px 20px;

@@ -1,15 +1,17 @@
+import { Loader } from 'components/Loader/Loader';
+import MovieList from 'components/MovieList/MovieList';
 import {
   Container,
   MoviesWrapper,
   Section,
 } from 'components/SharedLayout/SharedLayout.styled';
-import React, { useEffect, useState } from 'react';
-import { useSearchParams } from 'react-router-dom';
+import React, { Suspense, useEffect, useState } from 'react';
+import { Outlet, useSearchParams } from 'react-router-dom';
 import { fetchSerchMovies } from 'services/api';
 
 const Movies = () => {
   const [movies, setMovies] = useState([]);
-  const [setLoading] = useState(false);
+  const [loading, setLoading] = useState(false);
   const [searchParams, setSearchParams] = useSearchParams();
 
   const query = searchParams.get('query');
@@ -62,11 +64,14 @@ const Movies = () => {
               <input type="text" placeholder="Search Movies" required />
             </label>
           </form>
-          {movies.length !== 0 && <h2>Movies: '{query}'</h2>}
         </MoviesWrapper>
 
-        <ul></ul>
+        {loading && <Loader />}
       </Container>
+      <Suspense fallback={<Loader />}>
+        <Outlet />
+        {<MovieList movies={movies} />}
+      </Suspense>
     </Section>
   );
 };

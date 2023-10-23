@@ -16,6 +16,7 @@ export const ListHome = styled.ul`
     &:focus,
     &:active {
       color: #3fc9ff;
+      transition: all 400ms ease-in-out;
     }
   }
 `;
