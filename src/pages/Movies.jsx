@@ -1,5 +1,6 @@
 import { Loader } from 'components/Loader/Loader';
 import MovieList from 'components/MovieList/MovieList';
+import { Input } from 'components/MovieList/MovieList.styled';
 import {
   Container,
   MoviesWrapper,
@@ -61,7 +62,7 @@ const Movies = () => {
           <h1>Movies</h1>
           <form onSubmit={handleSubmit}>
             <label>
-              <input type="text" placeholder="Search Movies" required />
+              <Input type="text" placeholder="Search Movies" required />
             </label>
           </form>
         </MoviesWrapper>

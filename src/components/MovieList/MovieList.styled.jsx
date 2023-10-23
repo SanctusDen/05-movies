@@ -22,3 +22,12 @@ export const WrapperMovieItem = styled.ul`
     }
   }
 `;
+
+export const Input = styled.input`
+  box-shadow: 2px 2px 10px 0px #3fc9ff, 2px 2px 10px 0px #3fc9ff;
+  color: #fff;
+  background: inherit;
+  border-radius: 12px;
+  padding-left: 10px;
+  width: 100px;
+`;
