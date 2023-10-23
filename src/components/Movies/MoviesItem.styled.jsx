@@ -1,6 +1,7 @@
+import { Link } from 'react-router-dom';
 import { styled } from 'styled-components';
 
-export const LinkBtnBack = styled.a`
+export const LinkBtnBack = styled(Link)`
   width: 90px;
   display: flex;
   justify-content: center;
