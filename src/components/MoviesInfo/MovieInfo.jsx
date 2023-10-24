@@ -1,11 +1,12 @@
 import { useLocation } from 'react-router-dom';
 import { useRef } from 'react';
 
+// import { fetchTrendMovies } from 'services/api';
 import { LinkBtnBack, MovieItemWrapper } from './MoviesItem.styled';
 
 const BASE_IMG = 'https://image.tmdb.org/t/p/w300/';
 
-const MovieItem = ({
+export const MovieInfo = ({
   title,
   overview,
   genres,
@@ -14,6 +15,24 @@ const MovieItem = ({
   poster_path,
 }) => {
   const location = useLocation();
+
+  // const [movies, setMovies] = useState([]);
+  // const [loading, setLoading] = useState(false);
+
+  // useEffect(() => {
+  //   const details = async () => {
+  //     setLoading(true);
+  //     try {
+  //       const { results } = await fetchTrendMovies();
+  //       setMovies(results);
+  //     } catch (error) {
+  //       console.log(error.message);
+  //     } finally {
+  //       setLoading(false);
+  //     }
+  //   };
+  //   details();
+  // }, []);
 
   const ref = useRef(location.state?.from ?? '/');
   // const { title, overview, genres, release_date, vote_average, poster_path } =
@@ -42,5 +61,3 @@ const MovieItem = ({
     </>
   );
 };
-
-export default MovieItem;

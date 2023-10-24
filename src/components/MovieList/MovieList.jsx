@@ -1,23 +1,13 @@
-import MovieItem from 'components/Movies/MovieItems';
-import { Link } from 'react-router-dom';
-import { WrapperMovie, WrapperMovieItem } from './MovieList.styled';
+import { MovieItem } from 'components/MovieItem/MovieItem';
+import React from 'react';
+import { ListHome } from './MovieList.styled';
 
-const MovieList = ({ movie }) => {
+export const MovieList = ({ movies }) => {
   return (
-    <>
-      <WrapperMovie>
-        <MovieItem movie={movie} />
-        <WrapperMovieItem>
-          <li>
-            <Link to="cast">Cast</Link>
-          </li>
-          <li>
-            <Link to="reviews">Reviews</Link>
-          </li>
-        </WrapperMovieItem>
-      </WrapperMovie>
-    </>
+    <ListHome>
+      {movies.map(({ title, id, poster_path }) => (
+        <MovieItem key={id} title={title} poster_path={poster_path} id={id} />
+      ))}
+    </ListHome>
   );
 };
-
-export default MovieList;

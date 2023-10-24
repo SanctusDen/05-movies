@@ -1,17 +1,17 @@
-import HomeList from 'components/HomeList/HomeList';
+import { MovieList } from 'components/MovieList/MovieList';
 import { Loader } from 'components/Loader/Loader';
 // import MovieList from 'components/MovieList/MovieList';
-import { Input } from 'components/MovieList/MovieList.styled';
+import { Input } from 'components/MoviesInfo/Movie.styled';
 import {
   Container,
   MoviesWrapper,
   Section,
 } from 'components/SharedLayout/SharedLayout.styled';
-import React, { Suspense, useEffect, useState } from 'react';
-import { Outlet, useSearchParams } from 'react-router-dom';
+import React, { useEffect, useState } from 'react';
+import { useSearchParams } from 'react-router-dom';
 import { fetchSerchMovies } from 'services/api';
 
-const Movies = () => {
+export const Movies = () => {
   const [movies, setMovies] = useState([]);
   const [loading, setLoading] = useState(false);
   const [searchParams, setSearchParams] = useSearchParams();
@@ -57,6 +57,24 @@ const Movies = () => {
   };
 
   return (
+    // <Section>
+    //   <Container>
+    //     <MoviesWrapper>
+    //       <h1>Movies</h1>
+    //       <form onSubmit={handleSubmit}>
+    //         <label>
+    //           <Input type="text" placeholder="Search Movies" required />
+    //         </label>
+    //       </form>
+    //     </MoviesWrapper>
+
+    //     {loading && <Loader />}
+    //   </Container>
+    //   <Suspense fallback={<Loader />}>
+    //     <Outlet />
+    //     {<HomeList movies={movies} />}
+    //   </Suspense>
+    // </Section>
     <Section>
       <Container>
         <MoviesWrapper>
@@ -70,12 +88,7 @@ const Movies = () => {
 
         {loading && <Loader />}
       </Container>
-      <Suspense fallback={<Loader />}>
-        <Outlet />
-        {<HomeList movies={movies} />}
-      </Suspense>
+      {<MovieList movies={movies} />}
     </Section>
   );
 };
-
-export default Movies;

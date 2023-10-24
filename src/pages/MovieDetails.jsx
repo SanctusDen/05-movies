@@ -1,10 +1,12 @@
 import { Loader } from 'components/Loader/Loader';
-import MovieList from 'components/MovieList/MovieList';
-import React, { useEffect, useState } from 'react';
-import { useParams } from 'react-router-dom';
+import { WrapperMovieItem } from 'components/MoviesInfo/Movie.styled';
+import { MovieInfo } from 'components/MoviesInfo/MovieInfo';
+
+import React, { Suspense, useEffect, useState } from 'react';
+import { Link, Outlet, useParams } from 'react-router-dom';
 import { fetchAllDetails } from 'services/api';
 
-const MovieDetails = () => {
+export const MovieDetails = () => {
   const [loading, setLoading] = useState(false);
   const [movies, setMovies] = useState(null);
   const { movieId } = useParams();
@@ -28,9 +30,18 @@ const MovieDetails = () => {
     <div>
       <h1>{movieId}</h1>
       {loading && <Loader />}
-      {<MovieList movie={movies} />}
+      {<MovieInfo movie={movies} />}
+      <Suspense fallback={<Loader />}>
+        <Outlet />
+      </Suspense>
+      <WrapperMovieItem>
+        <li>
+          <Link to="cast">Cast</Link>
+        </li>
+        <li>
+          <Link to="reviews">Reviews</Link>
+        </li>
+      </WrapperMovieItem>
     </div>
   );
 };
-
-export default MovieDetails;

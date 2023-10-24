@@ -1,4 +1,4 @@
-import HomeList from 'components/HomeList/HomeList';
+import { MovieList } from 'components/MovieList/MovieList';
 import { Loader } from 'components/Loader/Loader';
 import {
   Container,
@@ -31,7 +31,7 @@ const Home = () => {
       <Container>
         <h1>Popular movies of the day!</h1>
         {loading && <Loader />}
-        {<HomeList movies={movies} />}
+        {<MovieList movies={movies} />}
       </Container>
     </Section>
   );
