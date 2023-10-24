@@ -1,5 +1,5 @@
-import HomeList from 'components/HomeList/HomeList';
 import { Loader } from 'components/Loader/Loader';
+import MovieList from 'components/MovieList/MovieList';
 import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import { fetchAllDetails } from 'services/api';
@@ -10,6 +10,7 @@ const MovieDetails = () => {
   const { movieId } = useParams();
 
   useEffect(() => {
+    if (!movies) return;
     const details = async () => {
       setLoading(true);
       try {
@@ -22,12 +23,12 @@ const MovieDetails = () => {
       }
     };
     details();
-  }, [movieId]);
+  }, [movieId, movies]);
   return (
     <div>
       <h1>{movieId}</h1>
       {loading && <Loader />}
-      {loading ? <HomeList movie={movies} /> : <Loader />}
+      {<MovieList movie={movies} />}
     </div>
   );
 };

@@ -1,5 +1,6 @@
+import HomeList from 'components/HomeList/HomeList';
 import { Loader } from 'components/Loader/Loader';
-import MovieList from 'components/MovieList/MovieList';
+// import MovieList from 'components/MovieList/MovieList';
 import { Input } from 'components/MovieList/MovieList.styled';
 import {
   Container,
@@ -71,7 +72,7 @@ const Movies = () => {
       </Container>
       <Suspense fallback={<Loader />}>
         <Outlet />
-        {<MovieList movies={movies} />}
+        {<HomeList movies={movies} />}
       </Suspense>
     </Section>
   );

@@ -3,7 +3,7 @@ import { useRef } from 'react';
 
 import { LinkBtnBack, MovieItemWrapper } from './MoviesItem.styled';
 
-// const BASE_IMG = 'https://image.tmdb.org/t/p/w300';
+const BASE_IMG = 'https://image.tmdb.org/t/p/w300/';
 
 const MovieItem = ({
   title,
@@ -21,14 +21,14 @@ const MovieItem = ({
   return (
     <>
       <LinkBtnBack to={ref.current}>Go back</LinkBtnBack>
-      {/* <div>
-      //   <img src={`${BASE_IMG}${poster_path}`} alt={title} />
-      //   {vote_average ? (
-      //     <span rating={vote_average}>{vote_average.toFixed(1)}</span>
-      //   ) : (
-      //     ''
-      //   )}
-      // </div> */}
+      <div>
+        <img src={`${BASE_IMG}${poster_path}`} alt={title} />
+        {vote_average ? (
+          <span rating={vote_average}>{vote_average.toFixed(1)}</span>
+        ) : (
+          ''
+        )}
+      </div>
       <MovieItemWrapper>
         <h2>{title}</h2>
         <p>Release data: {release_date}</p>
