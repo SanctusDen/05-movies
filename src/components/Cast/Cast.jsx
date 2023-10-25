@@ -7,7 +7,7 @@ import { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import { fetchActor } from 'services/api';
 
-export const Cast = () => {
+const Cast = () => {
   const [cast, setCast] = useState({});
   const [loading, setLoading] = useState(false);
 
@@ -42,3 +42,5 @@ export const Cast = () => {
     </Container>
   );
 };
+
+export default Cast;

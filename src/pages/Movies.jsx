@@ -10,7 +10,7 @@ import React, { useEffect, useState } from 'react';
 import { useSearchParams } from 'react-router-dom';
 import { fetchSerchMovies } from 'services/api';
 
-export const Movies = () => {
+const Movies = () => {
   const [movies, setMovies] = useState([]);
   const [loading, setLoading] = useState(false);
   const [searchParams, setSearchParams] = useSearchParams();
@@ -67,3 +67,5 @@ export const Movies = () => {
     </Section>
   );
 };
+
+export default Movies;
