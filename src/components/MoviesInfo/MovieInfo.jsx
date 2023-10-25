@@ -37,7 +37,7 @@ export const MovieInfo = ({
   }, [movies]);
 
   const ref = useRef(location.state?.from ?? '/');
-
+  console.log(poster_path);
   return (
     <>
       {loading && <Loader />}

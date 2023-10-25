@@ -8,11 +8,11 @@ import { fetchAllDetails } from 'services/api';
 
 const MovieDetails = ({ title }) => {
   const [loading, setLoading] = useState(false);
-  const [movies, setMovies] = useState(null);
+  const [movies, setMovies] = useState([]);
   const { movieId } = useParams();
 
   useEffect(() => {
-    const details = async () => {
+    const details = async movieId => {
       setLoading(true);
       try {
         const { results } = await fetchAllDetails(movieId);
