@@ -23,14 +23,14 @@ const Movies = () => {
       setLoading(true);
       try {
         const { results } = await fetchSerchMovies(query);
-        setMovies([results]);
+        setMovies(results);
       } catch (error) {
         console.log(error.message);
       } finally {
         setLoading(false);
       }
     };
-    details();
+    details(query);
   }, [query]);
 
   const nextParams = query !== '' ? { query } : {};

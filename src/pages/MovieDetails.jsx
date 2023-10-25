@@ -12,20 +12,20 @@ const MovieDetails = ({ title }) => {
   const { movieId } = useParams();
 
   useEffect(() => {
+    if (!movies) return;
     const details = async movieId => {
       setLoading(true);
       try {
-        const { results } = await fetchAllDetails(movieId);
-        setMovies(results);
+        const { result } = await fetchAllDetails(movieId);
+        setMovies(result);
       } catch (error) {
         console.log(error.message);
       } finally {
         setLoading(false);
       }
     };
-    details();
+    details(movieId);
   }, [movieId, movies]);
-  if (!movies) return;
 
   return (
     <div>

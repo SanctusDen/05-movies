@@ -1,4 +1,4 @@
-import { useLocation } from 'react-router-dom';
+import { useLocation, useParams } from 'react-router-dom';
 import { useEffect, useRef, useState } from 'react';
 
 import { LinkBtnBack, MovieItemWrapper } from './MoviesItem.styled';
@@ -16,28 +16,29 @@ export const MovieInfo = ({
   poster_path,
 }) => {
   const location = useLocation();
+  const { movieId } = useParams();
 
-  const [movies, setMovies] = useState(null);
+  const [movie, setMovie] = useState(null);
   const [loading, setLoading] = useState(false);
 
   useEffect(() => {
-    if (!movies) return;
-    const details = async movieId => {
+    const details = async () => {
       setLoading(true);
       try {
-        const { results } = await fetchSerchMovies(movieId);
-        setMovies(results);
+        const data = await fetchSerchMovies(movieId);
+        setMovie({ data });
       } catch (error) {
         console.log(error.message);
       } finally {
         setLoading(false);
       }
     };
-    details();
-  }, [movies]);
-
+    details(movieId);
+  }, [movieId]);
+  // debugger;
+  console.log(movie);
   const ref = useRef(location.state?.from ?? '/');
-  console.log(poster_path);
+
   return (
     <>
       {loading && <Loader />}
