@@ -8,7 +8,7 @@ import { useParams } from 'react-router-dom';
 import { fetchActor } from 'services/api';
 
 export const Cast = () => {
-  const [cast, setCast] = useState([]);
+  const [cast, setCast] = useState({});
   const [loading, setLoading] = useState(false);
 
   const { movieId } = useParams();

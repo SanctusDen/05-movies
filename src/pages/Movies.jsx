@@ -6,38 +6,39 @@ import {
   MoviesWrapper,
   Section,
 } from 'components/SharedLayout/SharedLayout.styled';
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useSearchParams } from 'react-router-dom';
-// import { fetchSerchMovies } from 'services/api';
+import { fetchSerchMovies } from 'services/api';
 
 export const Movies = () => {
-  const [movies] = useState([]);
-  const [loading] = useState(false);
+  const [movies, setMovies] = useState([]);
+  const [loading, setLoading] = useState(false);
   const [searchParams, setSearchParams] = useSearchParams();
 
   const query = searchParams.get('query');
 
-  // useEffect(() => {
-  //   if (!query) return;
-  //   const details = async () => {
-  //     setLoading(true);
-  //     try {
-  //       const { results } = await fetchSerchMovies(query);
-  //       setMovies([results]);
-  //     } catch (error) {
-  //       console.log(error.message);
-  //     } finally {
-  //       setLoading(false);
-  //     }
-  //   };
-  //   details();
-  // }, [query]);
+  useEffect(() => {
+    if (!query) return;
+    const details = async () => {
+      setLoading(true);
+      try {
+        const { results } = await fetchSerchMovies(query);
+        setMovies([results]);
+      } catch (error) {
+        console.log(error.message);
+      } finally {
+        setLoading(false);
+      }
+    };
+    details();
+  }, [query]);
+
   const nextParams = query !== '' ? { query } : {};
 
   const handleSubmit = e => {
     e.preventDefault();
 
-    const searchValue = e.target.elements.searchMovieId.value;
+    const searchValue = e.target.elements.query.value;
 
     setSearchParams({ query: searchValue });
   };
@@ -49,7 +50,12 @@ export const Movies = () => {
           <h1>Movies</h1>
           <form onSubmit={handleSubmit} query={nextParams}>
             <label>
-              <Input type="text" placeholder="Search Movies" required />
+              <Input
+                type="text"
+                name="query"
+                placeholder="Search Movies"
+                required
+              />
             </label>
           </form>
         </MoviesWrapper>

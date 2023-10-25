@@ -2,7 +2,7 @@ import { MovieItem } from 'components/MovieItem/MovieItem';
 import React from 'react';
 import { ListHome } from './MovieList.styled';
 
-export const MovieList = ({ movies }) => {
+export const MovieList = ({ movies, id }) => {
   return (
     <ListHome>
       {movies.map(({ title, id, poster_path }) => (
