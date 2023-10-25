@@ -1,6 +1,5 @@
 import { MovieList } from 'components/MovieList/MovieList';
 import { Loader } from 'components/Loader/Loader';
-// import MovieList from 'components/MovieList/MovieList';
 import { Input } from 'components/MoviesInfo/Movie.styled';
 import {
   Container,
@@ -21,19 +20,6 @@ export const Movies = () => {
   useEffect(() => {
     if (!query) return;
     const details = async () => {
-      try {
-        const { result } = await fetchSerchMovies();
-        const data = await result.json();
-        console.log(data);
-      } catch (error) {
-        console.log(error);
-      }
-    };
-    details();
-  }, [query]);
-
-  useEffect(() => {
-    const details = async () => {
       setLoading(true);
       try {
         const { results } = await fetchSerchMovies(query);
@@ -50,31 +36,12 @@ export const Movies = () => {
   const handleSubmit = e => {
     e.preventDefault();
 
-    const searchValue = e.target.elements.searchMoviesId.value;
-    console.log(searchValue);
+    const searchValue = e.target.elements.searchMovieId.value;
 
-    setSearchParams({ queryMovies: searchValue });
+    setSearchParams({ searchMovieId: searchValue });
   };
 
   return (
-    // <Section>
-    //   <Container>
-    //     <MoviesWrapper>
-    //       <h1>Movies</h1>
-    //       <form onSubmit={handleSubmit}>
-    //         <label>
-    //           <Input type="text" placeholder="Search Movies" required />
-    //         </label>
-    //       </form>
-    //     </MoviesWrapper>
-
-    //     {loading && <Loader />}
-    //   </Container>
-    //   <Suspense fallback={<Loader />}>
-    //     <Outlet />
-    //     {<HomeList movies={movies} />}
-    //   </Suspense>
-    // </Section>
     <Section>
       <Container>
         <MoviesWrapper>
@@ -88,6 +55,7 @@ export const Movies = () => {
 
         {loading && <Loader />}
       </Container>
+      {movies.length !== 0}
       {<MovieList movies={movies} />}
     </Section>
   );

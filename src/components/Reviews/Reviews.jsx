@@ -4,7 +4,7 @@ import { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import { fetchReviews } from 'services/api';
 
-const Reviews = () => {
+export const Reviews = () => {
   const [loading, setLoading] = useState(false);
   const [reviews, setReviews] = useState([]);
 
@@ -38,5 +38,3 @@ const Reviews = () => {
     </Container>
   );
 };
-
-export default Reviews;

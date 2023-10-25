@@ -6,7 +6,7 @@ import React, { Suspense, useEffect, useState } from 'react';
 import { Link, Outlet, useParams } from 'react-router-dom';
 import { fetchAllDetails } from 'services/api';
 
-export const MovieDetails = () => {
+export const MovieDetails = ({ title }) => {
   const [loading, setLoading] = useState(false);
   const [movies, setMovies] = useState(null);
   const { movieId } = useParams();
@@ -28,7 +28,7 @@ export const MovieDetails = () => {
   }, [movieId, movies]);
   return (
     <div>
-      <h1>{movieId}</h1>
+      <h1>{title}</h1>
       {loading && <Loader />}
       {<MovieInfo movie={movies} />}
       <Suspense fallback={<Loader />}>

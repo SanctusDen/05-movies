@@ -1,10 +1,12 @@
 import { useLocation } from 'react-router-dom';
-import { useRef } from 'react';
+import { useEffect, useRef, useState } from 'react';
 
 // import { fetchTrendMovies } from 'services/api';
 import { LinkBtnBack, MovieItemWrapper } from './MoviesItem.styled';
+import { fetchSerchMovies } from 'services/api';
+import { Loader } from 'components/Loader/Loader';
 
-const BASE_IMG = 'https://image.tmdb.org/t/p/w300/';
+const BASE_IMG = 'https://image.tmdb.org/t/p/w200/';
 
 export const MovieInfo = ({
   title,
@@ -12,34 +14,39 @@ export const MovieInfo = ({
   genres,
   release_date,
   vote_average,
+  movieId,
+  backdrop_path,
   poster_path,
 }) => {
   const location = useLocation();
 
-  // const [movies, setMovies] = useState([]);
-  // const [loading, setLoading] = useState(false);
+  const [movies, setMovies] = useState(null);
+  const [loading, setLoading] = useState(false);
 
-  // useEffect(() => {
-  //   const details = async () => {
-  //     setLoading(true);
-  //     try {
-  //       const { results } = await fetchTrendMovies();
-  //       setMovies(results);
-  //     } catch (error) {
-  //       console.log(error.message);
-  //     } finally {
-  //       setLoading(false);
-  //     }
-  //   };
-  //   details();
-  // }, []);
+  useEffect(() => {
+    if (!movies) return;
+    const details = async () => {
+      setLoading(true);
+      try {
+        const { results } = await fetchSerchMovies(movieId);
+        setMovies(results);
+      } catch (error) {
+        console.log(error.message);
+      } finally {
+        setLoading(false);
+      }
+    };
+    details();
+  }, [movieId, movies]);
 
   const ref = useRef(location.state?.from ?? '/');
   // const { title, overview, genres, release_date, vote_average, poster_path } =
   //   movie;
   return (
     <>
+      {loading && <Loader />}
       <LinkBtnBack to={ref.current}>Go back</LinkBtnBack>
+
       <div>
         <img src={`${BASE_IMG}${poster_path}`} alt={title} />
         {vote_average ? (
