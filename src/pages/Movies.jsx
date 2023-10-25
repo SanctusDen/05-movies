@@ -6,39 +6,39 @@ import {
   MoviesWrapper,
   Section,
 } from 'components/SharedLayout/SharedLayout.styled';
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import { useSearchParams } from 'react-router-dom';
-import { fetchSerchMovies } from 'services/api';
+// import { fetchSerchMovies } from 'services/api';
 
 export const Movies = () => {
-  const [movies, setMovies] = useState([]);
-  const [loading, setLoading] = useState(false);
+  const [movies] = useState([]);
+  const [loading] = useState(false);
   const [searchParams, setSearchParams] = useSearchParams();
 
   const query = searchParams.get('query');
 
-  useEffect(() => {
-    if (!query) return;
-    const details = async () => {
-      setLoading(true);
-      try {
-        const { results } = await fetchSerchMovies(query);
-        setMovies([results]);
-      } catch (error) {
-        console.log(error.message);
-      } finally {
-        setLoading(false);
-      }
-    };
-    details();
-  }, [query]);
+  // useEffect(() => {
+  //   if (!query) return;
+  //   const details = async () => {
+  //     setLoading(true);
+  //     try {
+  //       const { results } = await fetchSerchMovies(query);
+  //       setMovies([results]);
+  //     } catch (error) {
+  //       console.log(error.message);
+  //     } finally {
+  //       setLoading(false);
+  //     }
+  //   };
+  //   details();
+  // }, [query]);
 
   const handleSubmit = e => {
     e.preventDefault();
 
     const searchValue = e.target.elements.searchMovieId.value;
 
-    setSearchParams({ searchMovieId: searchValue });
+    setSearchParams({ query: searchValue });
   };
 
   return (
