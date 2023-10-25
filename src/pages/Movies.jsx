@@ -32,6 +32,7 @@ export const Movies = () => {
   //   };
   //   details();
   // }, [query]);
+  const nextParams = query !== '' ? { query } : {};
 
   const handleSubmit = e => {
     e.preventDefault();
@@ -46,7 +47,7 @@ export const Movies = () => {
       <Container>
         <MoviesWrapper>
           <h1>Movies</h1>
-          <form onSubmit={handleSubmit}>
+          <form onSubmit={handleSubmit} query={nextParams}>
             <label>
               <Input type="text" placeholder="Search Movies" required />
             </label>
