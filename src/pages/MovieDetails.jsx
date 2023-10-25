@@ -12,7 +12,6 @@ const MovieDetails = ({ title }) => {
   const { movieId } = useParams();
 
   useEffect(() => {
-    if (!movies) return;
     const details = async () => {
       setLoading(true);
       try {
@@ -26,6 +25,8 @@ const MovieDetails = ({ title }) => {
     };
     details();
   }, [movieId, movies]);
+  if (!movies) return;
+
   return (
     <div>
       <h1>{title}</h1>

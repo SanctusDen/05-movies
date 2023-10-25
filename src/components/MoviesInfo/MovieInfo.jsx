@@ -1,7 +1,6 @@
 import { useLocation } from 'react-router-dom';
 import { useEffect, useRef, useState } from 'react';
 
-// import { fetchTrendMovies } from 'services/api';
 import { LinkBtnBack, MovieItemWrapper } from './MoviesItem.styled';
 import { fetchSerchMovies } from 'services/api';
 import { Loader } from 'components/Loader/Loader';
@@ -14,8 +13,6 @@ export const MovieInfo = ({
   genres,
   release_date,
   vote_average,
-  movieId,
-  backdrop_path,
   poster_path,
 }) => {
   const location = useLocation();
@@ -25,7 +22,7 @@ export const MovieInfo = ({
 
   useEffect(() => {
     if (!movies) return;
-    const details = async () => {
+    const details = async movieId => {
       setLoading(true);
       try {
         const { results } = await fetchSerchMovies(movieId);
@@ -37,11 +34,10 @@ export const MovieInfo = ({
       }
     };
     details();
-  }, [movieId, movies]);
+  }, [movies]);
 
   const ref = useRef(location.state?.from ?? '/');
-  // const { title, overview, genres, release_date, vote_average, poster_path } =
-  //   movie;
+
   return (
     <>
       {loading && <Loader />}
