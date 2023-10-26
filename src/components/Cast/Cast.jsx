@@ -1,6 +1,3 @@
-// import React from 'react';
-
-// import { Loader } from 'components/Loader/Loader';
 import { Loader } from 'components/Loader/Loader';
 import { Container } from 'components/SharedLayout/SharedLayout.styled';
 import { useEffect, useState } from 'react';
