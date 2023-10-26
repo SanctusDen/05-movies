@@ -31,3 +31,7 @@ export const LinkBtnBack = styled(Link)`
 export const MovieItemWrapper = styled.div`
   color: #fff;
 `;
+
+export const GenresItem = styled.li`
+  list-style: none;
+`;

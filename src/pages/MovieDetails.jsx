@@ -1,6 +1,7 @@
 import { Loader } from 'components/Loader/Loader';
 import { WrapperMovieItem } from 'components/MoviesInfo/Movie.styled';
 import { MovieInfo } from 'components/MoviesInfo/MovieInfo';
+import { Container } from 'components/SharedLayout/SharedLayout.styled';
 
 import React, { Suspense, useEffect, useState } from 'react';
 import { Link, Outlet, useParams } from 'react-router-dom';
@@ -8,15 +9,15 @@ import { fetchAllDetails } from 'services/api';
 
 const MovieDetails = ({ title }) => {
   const [loading, setLoading] = useState(false);
-  const [movies, setMovies] = useState([]);
+  const [movie, setMovies] = useState(null);
   const { movieId } = useParams();
 
   useEffect(() => {
-    if (!movies) return;
     const details = async movieId => {
       setLoading(true);
       try {
-        const { result } = await fetchAllDetails(movieId);
+        const result = await fetchAllDetails(movieId);
+        console.log(result);
         setMovies(result);
       } catch (error) {
         console.log(error.message);
@@ -25,16 +26,14 @@ const MovieDetails = ({ title }) => {
       }
     };
     details(movieId);
-  }, [movieId, movies]);
+  }, [movieId]);
 
   return (
-    <div>
+    <Container>
       <h1>{title}</h1>
       {loading && <Loader />}
-      {<MovieInfo movie={movies} />}
-      <Suspense fallback={<Loader />}>
-        <Outlet />
-      </Suspense>
+      {movie && <MovieInfo {...movie} />}
+
       <WrapperMovieItem>
         <li>
           <Link to="cast">Cast</Link>
@@ -43,7 +42,10 @@ const MovieDetails = ({ title }) => {
           <Link to="reviews">Reviews</Link>
         </li>
       </WrapperMovieItem>
-    </div>
+      <Suspense fallback={<Loader />}>
+        <Outlet />
+      </Suspense>
+    </Container>
   );
 };
 

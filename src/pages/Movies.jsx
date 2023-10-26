@@ -35,12 +35,8 @@ const Movies = () => {
 
   const nextParams = query !== '' ? { query } : {};
 
-  const handleSubmit = e => {
-    e.preventDefault();
-
-    const searchValue = e.target.elements.query.value;
-
-    setSearchParams({ query: searchValue });
+  const handleSubmit = value => {
+    setSearchParams({ query: value });
   };
 
   return (

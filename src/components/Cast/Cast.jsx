@@ -8,16 +8,17 @@ import { useParams } from 'react-router-dom';
 import { fetchActor } from 'services/api';
 
 const Cast = () => {
-  const [cast, setCast] = useState({});
+  const [cast, setCast] = useState([]);
   const [loading, setLoading] = useState(false);
-
+  const defaultImg =
+    'https://ireland.apollo.olxcdn.com/v1/files/0iq0gb9ppip8-UA/image;s=1000x700';
   const { movieId } = useParams();
 
   useEffect(() => {
-    const details = async id => {
+    const details = async () => {
       setLoading(true);
       try {
-        const { cast } = await fetchActor(id);
+        const cast = await fetchActor(movieId);
         setCast(cast);
       } catch (error) {
         console.log(error.message);
@@ -33,9 +34,18 @@ const Cast = () => {
       {loading && <Loader />}
       <h1>Cast of the movie!</h1>
       {cast &&
-        cast.map(({ id, name, avatar }) => (
+        cast.map(({ id, name, profile_path }) => (
           <div key={id}>
-            <img src={avatar} alt={name} />
+            <img
+              src={
+                profile_path
+                  ? `https://image.tmdb.org/t/p/w500/${profile_path}`
+                  : defaultImg
+              }
+              width={250}
+              alt="poster"
+            />
+
             <h2>{name}</h2>
           </div>
         ))}

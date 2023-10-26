@@ -11,6 +11,7 @@ const Reviews = () => {
   const { movieId } = useParams();
 
   useEffect(() => {
+    if (!movieId) return;
     const details = async id => {
       setLoading(true);
       try {
